@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://btp70jdv30jxd"
-path="res://.godot/imported/pixel_splatter.png-421304213d95807ba75b5cb4a62cca76.ctex"
+uid="uid://bgxlgsnyb6i1a"
+path="res://.godot/imported/Splatter Pattern 1.png-470eb0e7eac115ef1f46738e818bf1d0.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Ground/pixel_splatter.png"
-dest_files=["res://.godot/imported/pixel_splatter.png-421304213d95807ba75b5cb4a62cca76.ctex"]
+source_file="res://Assets/Ground/Splatter Pattern 1.png"
+dest_files=["res://.godot/imported/Splatter Pattern 1.png-470eb0e7eac115ef1f46738e818bf1d0.ctex"]
 
 [params]
 

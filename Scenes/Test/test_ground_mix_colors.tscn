@@ -1,6 +1,8 @@
-[gd_scene load_steps=5 format=4 uid="uid://tefg3s64u730"]
+[gd_scene load_steps=8 format=4 uid="uid://tefg3s64u730"]
 
 [ext_resource type="Texture2D" uid="uid://b72rf2fplw8x6" path="res://Assets/Ground/Floor Tiles.png" id="1_0qwh6"]
+[ext_resource type="Script" path="res://Scripts/Test/TestGroundTestColorMixChild.cs" id="2_cxjir"]
+[ext_resource type="Texture2D" uid="uid://bgxlgsnyb6i1a" path="res://Assets/Ground/Splatter Pattern 1.png" id="3_exyln"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_sdsx5"]
 texture = ExtResource("1_0qwh6")
@@ -17,14 +19,21 @@ texture_region_size = Vector2i(32, 32)
 tile_size = Vector2i(32, 32)
 sources/1 = SubResource("TileSetAtlasSource_sdsx5")
 
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_nbwns"]
+texture = ExtResource("3_exyln")
+texture_region_size = Vector2i(32, 32)
+0:0/0 = 0
+
 [sub_resource type="TileSet" id="TileSet_pwd3m"]
 tile_size = Vector2i(32, 32)
+sources/0 = SubResource("TileSetAtlasSource_nbwns")
 
 [node name="TestGroundMixColors" type="Node2D"]
 
 [node name="GroundLayer" type="TileMapLayer" parent="."]
 tile_map_data = PackedByteArray("AAAAAAAAAQAAAAAAAAAAAAEAAQAAAAAAAAABAAEAAQAAAAAAAAABAAAAAQAAAAAAAAAAAAIAAQAAAAAAAAABAAIAAQAAAAAAAAACAAIAAQAAAAAAAAACAAEAAQAAAAAAAAACAAAAAQAAAAAAAAADAAAAAQAAAAAAAAADAAEAAQAAAAAAAAADAAIAAQAAAAAAAAADAAMAAQAAAAAAAAACAAMAAQAAAAAAAAABAAMAAQAAAAAAAAAAAAMAAQAAAAAAAAA=")
 tile_set = SubResource("TileSet_kjml6")
+script = ExtResource("2_cxjir")
 
 [node name="SplatterTile" type="TileMapLayer" parent="GroundLayer"]
 tile_set = SubResource("TileSet_pwd3m")

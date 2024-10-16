@@ -10,6 +10,9 @@ public partial class TestGroundTestColorMixChild : TileMapLayer
 
 		int numTileSources = ts.GetSourceCount();
 		TileSetSource tss = ts.GetSource((int)rand.NextInt64(numTileSources));
+		
+		int numTilesInSource = tss.GetTilesCount();
+		Vector2I 
 	}
 
 	// Called when the node enters the scene tree for the first time.

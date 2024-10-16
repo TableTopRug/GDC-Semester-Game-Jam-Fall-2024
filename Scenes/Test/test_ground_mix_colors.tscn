@@ -1,0 +1,30 @@
+[gd_scene load_steps=5 format=4 uid="uid://tefg3s64u730"]
+
+[ext_resource type="Texture2D" uid="uid://b72rf2fplw8x6" path="res://Assets/Ground/Floor Tiles.png" id="1_0qwh6"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_sdsx5"]
+texture = ExtResource("1_0qwh6")
+texture_region_size = Vector2i(32, 32)
+0:0/0 = 0
+1:0/0 = 0
+2:0/0 = 0
+3:0/0 = 0
+4:0/0 = 0
+5:0/0 = 0
+6:0/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_kjml6"]
+tile_size = Vector2i(32, 32)
+sources/1 = SubResource("TileSetAtlasSource_sdsx5")
+
+[sub_resource type="TileSet" id="TileSet_pwd3m"]
+tile_size = Vector2i(32, 32)
+
+[node name="TestGroundMixColors" type="Node2D"]
+
+[node name="GroundLayer" type="TileMapLayer" parent="."]
+tile_map_data = PackedByteArray("AAAAAAAAAQAAAAAAAAAAAAEAAQAAAAAAAAABAAEAAQAAAAAAAAABAAAAAQAAAAAAAAAAAAIAAQAAAAAAAAABAAIAAQAAAAAAAAACAAIAAQAAAAAAAAACAAEAAQAAAAAAAAACAAAAAQAAAAAAAAADAAAAAQAAAAAAAAADAAEAAQAAAAAAAAADAAIAAQAAAAAAAAADAAMAAQAAAAAAAAACAAMAAQAAAAAAAAABAAMAAQAAAAAAAAAAAAMAAQAAAAAAAAA=")
+tile_set = SubResource("TileSet_kjml6")
+
+[node name="SplatterTile" type="TileMapLayer" parent="GroundLayer"]
+tile_set = SubResource("TileSet_pwd3m")

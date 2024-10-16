@@ -1,20 +1,9 @@
 using Godot;
 using System;
+using System.Reflection.Metadata.Ecma335;
 
 public partial class TestGroundTestColorMixChild : TileMapLayer
 {
-	public Vector2I[] AddColorChangePattern()
-	{
-		TileSet ts = this.TileSet;
-		Random rand = new Random();
-
-		int numTileSources = ts.GetSourceCount();
-		TileSetSource tss = ts.GetSource((int)rand.NextInt64(numTileSources));
-		
-		int numTilesInSource = tss.GetTilesCount();
-		Vector2I 
-	}
-
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{

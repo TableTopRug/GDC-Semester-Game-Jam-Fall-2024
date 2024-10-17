@@ -37,6 +37,5 @@ tile_set = SubResource("TileSet_kjml6")
 script = ExtResource("2_cxjir")
 
 [node name="SplatterTile" type="TileMapLayer" parent="GroundLayer"]
-visible = false
 tile_set = SubResource("TileSet_pwd3m")
 script = ExtResource("4_fmy6w")

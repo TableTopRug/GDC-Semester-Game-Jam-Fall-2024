@@ -64,11 +64,12 @@ public partial class SplatterTile : TileMapLayer
 		Rect2I region = new Rect2I(tileAtlasPos, tileSize);
 		Image tileImage = img.GetRegion(region);
 		ImageTexture imgTex = ImageTexture.CreateFromImage(tileImage);
+		GD.Print($"H: {imgTex.GetHeight()}, W: {imgTex.GetWidth()}");
 
 		int imgH = tileSize.Y - tileAtlasPos.Y;
 		int imgW = tileSize.Y - tileAtlasPos.Y;
 		bool[,] alphaMap = new bool[imgH, imgW];
-		GD.Print($"Texture: {img != null}");
+		GD.Print($"Texture: {img != null}: H={imgH}, W={imgW}");
 
 		for (int y = 0; y < imgH; y++) {
 			for (int x = 0; x < imgW; x++) {
@@ -89,7 +90,7 @@ public partial class SplatterTile : TileMapLayer
 		// this.SetCell(new Vector2I(0, 0), tmp.Item1, tmp.Item2, tmp.Item3);
 
 		bool[,] stuff = GetColorChangePattern(new Vector2I(0, 0));
-		GD.Print(MatrixUtils.GetMatrixAsFormattedString<bool>(stuff, new char[] {'T', 'F'}, (bool b, char[] ls) => { return ls[b == true ? 1 : 0]; }));
+		GD.Print(MatrixUtils.GetMatrixAsFormattedString<bool>(stuff, new char[] {' ', 'T'}, (bool b, char[] ls) => { return ls[b == true ? 1 : 0]; }));
 
 	}
 

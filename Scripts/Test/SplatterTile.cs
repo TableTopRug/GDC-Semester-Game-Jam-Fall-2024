@@ -4,7 +4,7 @@ using System;
 public partial class SplatterTile : TileMapLayer
 {
 	// get the pixels of the pattern (their coordinates)
-	public Vector2I[] AddColorChangePattern()
+	public Vector2I[] AddColorChangePattern(Vector2I tilePos)
 	{
 		TileSet ts = this.TileSet;
 		Random rand = new Random();
@@ -26,19 +26,27 @@ public partial class SplatterTile : TileMapLayer
 		TileSetAtlasSource tsas = (TileSetAtlasSource)tss;
 		Image img = tsas.Texture.GetImage();
 		GD.Print($"Texture: {img}");
-		int imgH = img.GetHeight();
-		int imgW = img.GetWidth();
-		bool[,] alphaMap = new bool[imgH, imgW];
-		GD.Print($"Texture: {img != null}");
+		Vector2I tileAtlasPos = this.GetCellAtlasCoords(tilePos);
+		Vector2I tileSize = ts.GetTileSize();
+		tileAtlasPos *= tileSize;
 
-		for (int y = 0; y < imgH; y++) {
-			for (int x = 0; x < imgW; x++) {
-				Color pix = img.GetPixel(x, y);
-				alphaMap[y, x] = pix.A > 0;
-			}
-		}
+		Rect2I region = new Rect2I(tileAtlasPos, tileSize);
+		Image tileImage = img.GetRegion(region);
+		ImageTexture imgTex = ImageTexture.CreateFromImage(tileImage);
 
-		GD.Print(alphaMap.ToString());
+		// int imgH = img.GetHeight();
+		// int imgW = img.GetWidth();
+		// bool[,] alphaMap = new bool[imgH, imgW];
+		// GD.Print($"Texture: {img != null}");
+
+		// for (int y = 0; y < imgH; y++) {
+		// 	for (int x = 0; x < imgW; x++) {
+		// 		Color pix = img.GetPixel(x, y);
+		// 		alphaMap[y, x] = pix.A > 0;
+		// 	}
+		// }
+
+		// GD.Print(alphaMap.ToString());
 
 		return new Vector2I[]{new Vector2I(0, 0)};
 	}

@@ -4,6 +4,11 @@ using System.Reflection.Metadata.Ecma335;
 
 public partial class TestGroundTestColorMixChild : TileMapLayer
 {
+	// replace the tile colors in the pattern
+	public void SplatterColorsOnT() {
+		
+	}
+
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{

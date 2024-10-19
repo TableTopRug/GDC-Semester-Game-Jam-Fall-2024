@@ -1,7 +1,8 @@
 using System;
 using Godot;
 
-public static class MatrixUtils {
+public static class MatrixUtils 
+{
     public static string GetMatrixAsFormattedString<T>(T[,] array, char[] labels, Func<T, char[], char> determineLabel) {
         string ret = "";
 

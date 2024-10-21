@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://bh6k2sif2xt5l"]
 
-[ext_resource type="Texture2D" uid="uid://b72rf2fplw8x6" path="res://Assets/Ground/Floor Tiles.png" id="1_ko2u1"]
+[ext_resource type="Texture2D" uid="uid://b72rf2fplw8x6" path="res://Assets/Test/Floor Tiles.png" id="1_ko2u1"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_2ayg7"]
 resource_name = "ground"

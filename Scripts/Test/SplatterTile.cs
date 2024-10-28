@@ -159,6 +159,7 @@ public partial class SplatterTile : TileMapLayer
 			GD.Print("An error occurred when trying to access the path.");
 		}
 
+		TileSetAtlasSource tsas = new TileSetAtlasSource();
 		//compare the names of what already exists\
 		foreach (string name in pics) 
 		{
@@ -171,16 +172,30 @@ public partial class SplatterTile : TileMapLayer
 				Image img = Image.LoadFromFile($"{testPicPath}/{name}");
 				AtlasTexture aTex = new AtlasTexture();
 				aTex.Atlas = ImageTexture.CreateFromImage(img);
-				GD.Print($"{aTex.Atlas.GetName()} from {aTex.Atlas.GetPath()}");
+				aTex.Atlas.ResourceName = name;
+				aTex.Atlas.ResourcePath = $"{testPicPath}/{name}";
+				GD.Print($"{name}: {aTex.Atlas.GetName()} from {aTex.Atlas.GetPath()}");
+				tsas.Texture = aTex;
+				tsas.TextureRegionSize = tileSize;
+				GD.Print($"\t{((AtlasTexture)tsas.Texture).GetName()} from {tsas.Texture.GetPath()}");
+
+				for (int x = 0; x * tileSize.X < tsas.Texture.GetSize().X; x ++) {
+					for (int y = 0; y * tileSize.Y < tsas.Texture.GetSize().Y; y ++) {
+						tsas.CreateTile(new Vector2I(x, y));
+					}
+				}
+
+				ts.AddSource(tsas);
 			}
 		}
+
 
 		int numTileSources = ts.GetSourceCount();
 		string[] atlasTexName = new string[numTileSources];
 
 		for (int i = 0; i < numTileSources; i++)
 		{
-			// atlasTexName[i] = "0 " + ts.GetSource(i).GetName() + ts.GetSource(i).GetPath() + ts.GetSource(i).GetMetaList().ToString();
+			atlasTexName[i] = $"{i}: {((TileSetAtlasSource)ts.GetSource(i)).Texture.GetName()}; {((TileSetAtlasSource)ts.GetSource(i)).Texture.GetPath()}; {((TileSetAtlasSource)ts.GetSource(i)).Texture.GetMetaList().ToString()}";
 		}
 
 		GD.Print(atlasTexName);

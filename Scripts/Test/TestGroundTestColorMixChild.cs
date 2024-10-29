@@ -5,9 +5,6 @@ using static Godot.Collections.Array;
 
 public partial class TestGroundTestColorMixChild : TileMapLayer
 {
-	[Export]
-	public float splatterGenerationChance = 100;
-
 	private TileSetAtlasSource tsAtlasSrc;
 
 	private static RandomNumberGenerator rng = new RandomNumberGenerator();
@@ -24,7 +21,7 @@ public partial class TestGroundTestColorMixChild : TileMapLayer
 		}
 	}
 
-	public void GenerateSplatterPatternColorVariants()
+	/*public void GenerateSplatterPatternColorVariants()
 	{
 		for (int idx = 0; idx < this.TileSet.GetSourceCount(); idx++) {
 			int srcId = this.TileSet.GetSourceId(idx);
@@ -37,7 +34,7 @@ public partial class TestGroundTestColorMixChild : TileMapLayer
 				}
 			}
 		}
-	}
+	} */
 
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()

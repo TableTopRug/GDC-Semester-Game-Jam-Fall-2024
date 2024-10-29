@@ -6,6 +6,9 @@ using Godot;
 
 public partial class SplatterTile : TileMapLayer
 {
+	[Export]
+	public float splatterGenerationChance = 1f;
+
 	TileSet ts;
 	Vector2I tileSize;
 
@@ -23,7 +26,7 @@ public partial class SplatterTile : TileMapLayer
 	/// 	(Does not pull form alternate patterns)
 	/// </summary>
 	/// <returns>The source ID (int), atlas coordinates (Vector2I), and tile ID</returns>
-	public (int, Vector2I, int) GetRandomSplatterPattern()
+	public (int, Vector2I, int) GetRandomSplatterPatternImage()
 	{
 		RandomNumberGenerator rand = new RandomNumberGenerator();
 
@@ -93,10 +96,17 @@ public partial class SplatterTile : TileMapLayer
 		return alphaMap;
 	}
 	
-	public void SetSplatterPattern(Vector2I tilePos, Image img)
+	/// <summary>
+	/// 	Gets the part of the splatter pattern that affects a specific tile
+	/// </summary>
+	/// <param name="tilePos">The position of the tile being checked.</param>
+	/// <param name="tilePixels">The size (x, y) of the tile being checked.</param>
+	/// <returns></returns>
+	public bool[,] GetSplatterPatternPixelsForTile(Vector2I tilePos, Vector2I tilePixels)
 	{
-		(int, Vector2I, int) pattern = GetRandomSplatterPattern();
-		TileSetSource tss = ts.GetSource(pattern.Item1);
+		(int, Vector2I, int) pattern = GetRandomSplatterPatternImage();
+		TileSetAtlasSource tsas = (TileSetAtlasSource)ts.GetSource(pattern.Item1);
+		bool[,] ret = new bool[tilePixels.Y,tilePixels.X];
 
 		//create new image from base pattern
 		Image patternImg = GetImageFromAtlas((TileSetAtlasSource)ts.GetSource(pattern.Item1), pattern.Item2);
@@ -104,21 +114,15 @@ public partial class SplatterTile : TileMapLayer
 		//change image colors to match whatever we want
 		bool[,] patternMap = GetColorChangePattern(pattern.Item2, pattern.Item1, pattern.Item3);
 
-		for (int x = 0; x < tileSize.X; x++) {
-			for (int y = 0; y < tileSize.Y; y++) {
+		for (int x = 0; x < tilePixels.X; x++) {
+			for (int y = 0; y < tilePixels.Y; y++) {
 				if (patternMap[y,x]) {
-					patternImg.SetPixel(x, y, img.GetPixel(x, y));
+					ret[y,x] = patternMap[y,x];
 				}
 			}
 		}
-
-		//save pattern/color combo in custom data layer in atlas
-
-		//recreate atlas taxture with new part added
-
-		//use new atlas texture to set tile
 		
-		
+		return ret;
 	}
 
 	public void GenerateAllSplatterPatternColorCombos(Image img)
@@ -140,7 +144,7 @@ public partial class SplatterTile : TileMapLayer
 		// }
 	}
 
-	public void PopulateSplatterDictionary() 
+	/*public void PopulateSplatterDictionary() 
 	{
 		string[] pics = null, rcs = null;
 
@@ -163,7 +167,7 @@ public partial class SplatterTile : TileMapLayer
 		//compare the names of what already exists\
 		foreach (string name in pics) 
 		{
-			if (rcs.Contains(name))
+			if (rcs.ElementsContain(name))
 			{
 				break;
 			}
@@ -199,7 +203,7 @@ public partial class SplatterTile : TileMapLayer
 		}
 
 		GD.Print(atlasTexName);
-	}
+	}*/
 
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
@@ -207,7 +211,7 @@ public partial class SplatterTile : TileMapLayer
 		ts = this.TileSet;
 		tileSize = ts.GetTileSize();
 
-		PopulateSplatterDictionary();
+		// PopulateSplatterDictionary();
 
 		// var tmp = GetRandomSplatterPattern();
 		// this.SetCell(new Vector2I(0, 0), tmp.Item1, tmp.Item2, tmp.Item3);

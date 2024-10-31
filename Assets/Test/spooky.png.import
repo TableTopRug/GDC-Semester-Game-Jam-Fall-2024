@@ -1,0 +1,14 @@
+[remap]
+
+importer="image"
+type="Image"
+uid="uid://dtegkfdwfrij3"
+path="res://.godot/imported/spooky.png-d86f9289d6ec6ab6b8f8de4aae1cf35a.image"
+
+[deps]
+
+source_file="res://Assets/Test/spooky.png"
+dest_files=["res://.godot/imported/spooky.png-d86f9289d6ec6ab6b8f8de4aae1cf35a.image"]
+
+[params]
+

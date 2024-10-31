@@ -7,7 +7,7 @@ using Godot;
 public partial class SplatterTile : TileMapLayer
 {
 	[Export]
-	public float splatterGenerationChance = 1f;
+	public int splatterGenerationChance = 100;
 
 	TileSet ts;
 	Vector2I tileSize;
@@ -16,9 +16,9 @@ public partial class SplatterTile : TileMapLayer
 	/// 	Contains the Source ID of the pattern texture and the source ID of the colored pattern texture
 	/// </summary>
 	static Dictionary<int, int> patternIds;
-
 	static string testPicPath = "res://Assets/Test/Patterns";
 	static string testResPath = "res://Resources/Test/Patterns";
+	private static RandomNumberGenerator rng = new RandomNumberGenerator();
 
 
 	/// <summary>
@@ -31,25 +31,31 @@ public partial class SplatterTile : TileMapLayer
 		RandomNumberGenerator rand = new RandomNumberGenerator();
 
 		int numTileSources = ts.GetSourceCount();
+		// GD.Print(numTileSources);
 		// WHY THE ACTUAL FUCK IS THIS NOT (consistently) 0-INDEXED???
 		// IT WAS NON-ZERO INDEXED IN THE OTHER FILE SO WHAT THE FUCK?
-		int sourceId = (int)rand.RandiRange(0, numTileSources);
+		int sourceId = (int)rand.RandiRange(0, numTileSources - 1);
 		TileSetSource tss = ts.GetSource(sourceId);
 		int numTilesInSource = tss.GetTilesCount();
-		int tileId = (int)rand.RandiRange(0, numTilesInSource);
+		int tileId = (int)rand.RandiRange(0, numTilesInSource - 1);
 		Vector2I tileAtlasCoords = tss.GetTileId(tileId);
-
-		Vector2I atlasCoords = tileAtlasCoords;
+		// GD.Print($"{numTilesInSource} {sourceId} {numTilesInSource} {tileId} {tileAtlasCoords}");
 
 		return GetSplatterPattern(sourceId, tileId);
 	}
 
+	/// <summary>
+	/// 	Gets a specific cplatter pattern.
+	/// </summary>
+	/// <returns>The source ID (int), atlas coordinates (Vector2I), and tile ID</returns>
 	public (int, Vector2I, int) GetSplatterPattern(int sourceId, int tileId)
 	{
 		TileSetSource tss = ts.GetSource(sourceId);
 		
 		// I gotta fight the GoDot devs
 		Vector2I tileAtlasCoords = tss.GetTileId(tileId);
+
+		// GD.Print($"{sourceId} {tileAtlasCoords} {tileId}");
 
 		return (sourceId, tileAtlasCoords, tileId);
 	}
@@ -125,7 +131,7 @@ public partial class SplatterTile : TileMapLayer
 		return ret;
 	}
 
-	public void GenerateAllSplatterPatternColorCombos(Image img)
+	/*public void GenerateAllSplatterPatternColorCombos(Image img)
 	{
 		// // need to create a custoom dictionary to store source ids and other information for easier searching when creating tiles and colors withj patterns
 		// for 
@@ -142,9 +148,9 @@ public partial class SplatterTile : TileMapLayer
 		// 		}
 		// 	}
 		// }
-	}
+	}*/
 
-	/*public void PopulateSplatterDictionary() 
+	public void PopulateSplatterDictionary() 
 	{
 		string[] pics = null, rcs = null;
 
@@ -154,43 +160,36 @@ public partial class SplatterTile : TileMapLayer
 			pics = FileSystemUtils.ScanDirForFileType(testPicPath, ".png").Where(str => str.Contains("pattern")).ToArray();
 			GD.Print($"{pics.Count()} images found @{testPicPath}: {pics.ToString<string>()}");
 
-			rcs = FileSystemUtils.ScanDirForFileType(testResPath, ".tres")
-					.Concat(FileSystemUtils.ScanDirForFileType(testResPath, ".res")).Where(str => str.Contains("pattern")).ToArray();
-			GD.Print($"{rcs.Count()} resources found @{testResPath}: {rcs}");
+			// rcs = FileSystemUtils.ScanDirForFileType(testResPath, ".tres")
+			// 		.Concat(FileSystemUtils.ScanDirForFileType(testResPath, ".res")).Where(str => str.Contains("pattern")).ToArray();
+			// GD.Print($"{rcs.Count()} resources found @{testResPath}: {rcs}");
 		}
 		catch (Exception e)
 		{
 			GD.Print("An error occurred when trying to access the path.");
 		}
 
-		TileSetAtlasSource tsas = new TileSetAtlasSource();
 		//compare the names of what already exists\
 		foreach (string name in pics) 
 		{
-			if (rcs.ElementsContain(name))
-			{
-				break;
-			}
-			else
-			{
-				Image img = Image.LoadFromFile($"{testPicPath}/{name}");
-				AtlasTexture aTex = new AtlasTexture();
-				aTex.Atlas = ImageTexture.CreateFromImage(img);
-				aTex.Atlas.ResourceName = name;
-				aTex.Atlas.ResourcePath = $"{testPicPath}/{name}";
-				GD.Print($"{name}: {aTex.Atlas.GetName()} from {aTex.Atlas.GetPath()}");
-				tsas.Texture = aTex;
-				tsas.TextureRegionSize = tileSize;
-				GD.Print($"\t{((AtlasTexture)tsas.Texture).GetName()} from {tsas.Texture.GetPath()}");
+			Image img = Image.LoadFromFile($"{testPicPath}/{name}");
+			AtlasTexture aTex = new AtlasTexture();
+			aTex.Atlas = ImageTexture.CreateFromImage(img);
+			aTex.Atlas.ResourceName = name;
+			aTex.Atlas.ResourcePath = $"{testPicPath}/{name}";
+			// GD.Print($"\t{name}: {aTex.Atlas.GetName()} from {aTex.Atlas.GetPath()}");
+			TileSetAtlasSource tsas = new TileSetAtlasSource();
+			tsas.Texture = aTex;
+			tsas.TextureRegionSize = tileSize;
+			// GD.Print($"\t{((AtlasTexture)tsas.Texture).Atlas.GetName()} from {((AtlasTexture)tsas.Texture).Atlas.GetPath()}");
 
-				for (int x = 0; x * tileSize.X < tsas.Texture.GetSize().X; x ++) {
-					for (int y = 0; y * tileSize.Y < tsas.Texture.GetSize().Y; y ++) {
-						tsas.CreateTile(new Vector2I(x, y));
-					}
+			for (int x = 0; x * tileSize.X < tsas.Texture.GetSize().X; x ++) {
+				for (int y = 0; y * tileSize.Y < tsas.Texture.GetSize().Y; y ++) {
+					tsas.CreateTile(new Vector2I(x, y));
 				}
-
-				ts.AddSource(tsas);
 			}
+
+			ts.AddSource(tsas);
 		}
 
 
@@ -199,19 +198,34 @@ public partial class SplatterTile : TileMapLayer
 
 		for (int i = 0; i < numTileSources; i++)
 		{
-			atlasTexName[i] = $"{i}: {((TileSetAtlasSource)ts.GetSource(i)).Texture.GetName()}; {((TileSetAtlasSource)ts.GetSource(i)).Texture.GetPath()}; {((TileSetAtlasSource)ts.GetSource(i)).Texture.GetMetaList().ToString()}";
+			atlasTexName[i] = $"{i}: {((AtlasTexture)((TileSetAtlasSource)ts.GetSource(i)).Texture).Atlas.GetName()}; "+
+				$"{((AtlasTexture)((TileSetAtlasSource)ts.GetSource(i)).Texture).Atlas.GetPath()}; "+
+				$"{((AtlasTexture)((TileSetAtlasSource)ts.GetSource(i)).Texture).Atlas.GetMetaList().ToString()}";
 		}
 
 		GD.Print(atlasTexName);
-	}*/
+	}
+
+	public void GeneratePatternDistribution(Vector2I tilePos) {
+		int i = rng.RandiRange(0, 100);
+		// GD.Print($"{i} and {splatterGenerationChance}: {i <= splatterGenerationChance}");
+
+		if (i <= splatterGenerationChance) {
+			var pattern = GetRandomSplatterPatternImage();
+			// GD.Print(pattern);
+			GD.Print($"Generated Pattern {pattern.Item1}: {((AtlasTexture)((TileSetAtlasSource)ts.GetSource(pattern.Item1)).Texture).Atlas.GetName()}, Atlas Coordinates: {pattern.Item2}, Tile ID: {pattern.Item3}");
+			this.SetCell(tilePos, pattern.Item1, pattern.Item2, pattern.Item3);
+		}
+	}
 
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
 		ts = this.TileSet;
 		tileSize = ts.GetTileSize();
+		rng = new RandomNumberGenerator();
 
-		// PopulateSplatterDictionary();
+		PopulateSplatterDictionary();
 
 		// var tmp = GetRandomSplatterPattern();
 		// this.SetCell(new Vector2I(0, 0), tmp.Item1, tmp.Item2, tmp.Item3);

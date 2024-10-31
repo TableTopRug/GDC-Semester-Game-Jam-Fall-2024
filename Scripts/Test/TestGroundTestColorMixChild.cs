@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using Godot;
 using Godot.Collections;
 
@@ -5,19 +6,40 @@ using static Godot.Collections.Array;
 
 public partial class TestGroundTestColorMixChild : TileMapLayer
 {
-	private TileSetAtlasSource tsAtlasSrc;
+	private SplatterTile splatterTile;
 
 	private static RandomNumberGenerator rng = new RandomNumberGenerator();
 
 
 	// replace the tile colors in the pattern
-	public void SplatterColorsOnTile() 
+	public void SplatterColorsOnTiles() 
 	{
 		Array<Vector2I> validCells = this.GetUsedCells();
+		
+		// foreach (Vector2I pos in validCells)
+		// {
+		// 	this.GetChild<SplatterTile>(0).GeneratePatternDistribution(pos);
+		// }
 
-		foreach (Vector2I pos in validCells)
-		{
-			
+		int numStuff = validCells.Count;
+		int numPatterns = rng.RandiRange(0, numStuff / 2);
+		List<Vector2I> patternTiles = new List<Vector2I>();
+
+		for (int i = 0; i < numPatterns; i++) {
+			int idx = rng.RandiRange(0, numStuff - i);
+			splatterTile.GeneratePatternDistribution(validCells[idx]);
+			patternTiles.Add(validCells[idx]);
+			validCells.RemoveAt(idx);
+		}
+
+		foreach (Vector2I pos in patternTiles) {
+			bool[,] pattern = splatterTile.GetSplatterPatternPixelsForTile(pos, this.TileSet.TileSize);
+
+			for (int y = 0; y < pattern.GetLength(0); y++) {
+				for (int x = 0; x < pattern.Length / pattern.GetLength(0); x++) {
+					((TileSetAtlasSource)this.TileSet.GetSource(0)).
+				}
+			}
 		}
 	}
 
@@ -39,7 +61,9 @@ public partial class TestGroundTestColorMixChild : TileMapLayer
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
-		// tsAtlasSrc = (TileSetAtlasSource)this.TileSet.GetSource(1);
+		splatterTile = this.GetChild<SplatterTile>(0);
+
+		SplatterColorsOnTiles();
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.

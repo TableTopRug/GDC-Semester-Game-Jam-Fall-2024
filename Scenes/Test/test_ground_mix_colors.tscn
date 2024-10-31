@@ -30,5 +30,11 @@ tile_set = SubResource("TileSet_kjml6")
 script = ExtResource("2_cxjir")
 
 [node name="SplatterTile" type="TileMapLayer" parent="GroundLayer"]
+visible = false
 tile_set = SubResource("TileSet_pwd3m")
 script = ExtResource("4_fmy6w")
+splatterGenerationChance = 30
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(63, 64)
+zoom = Vector2(4, 4)

@@ -26,3 +26,7 @@ project/assembly_name="GDC Semester Game Jam Fall 2024"
 2d_physics/layer_4="liquid"
 2d_physics/layer_5="item"
 2d_physics/layer_6="attack"
+
+[rendering]
+
+textures/canvas_textures/default_texture_filter=0

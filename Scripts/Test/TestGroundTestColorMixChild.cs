@@ -25,7 +25,7 @@ public partial class TestGroundTestColorMixChild : TileMapLayer
 		int numPatterns = rng.RandiRange(0, numStuff / 2);
 		List<Vector2I> patternTiles = new List<Vector2I>();
 
-		for (int i = 0; i < numPatterns; i++) {
+		for (int i = 1; i <= numPatterns; i++) {
 			int idx = rng.RandiRange(0, numStuff - i);
 			splatterTile.GeneratePatternDistribution(validCells[idx]);
 			patternTiles.Add(validCells[idx]);
@@ -33,13 +33,7 @@ public partial class TestGroundTestColorMixChild : TileMapLayer
 		}
 
 		foreach (Vector2I pos in patternTiles) {
-			bool[,] pattern = splatterTile.GetSplatterPatternPixelsForTile(pos, this.TileSet.TileSize);
-
-			for (int y = 0; y < pattern.GetLength(0); y++) {
-				for (int x = 0; x < pattern.Length / pattern.GetLength(0); x++) {
-					((TileSetAtlasSource)this.TileSet.GetSource(0)).
-				}
-			}
+			splatterTile.AddColorPattern(pos, this.TileSet.TileSize, new Image());
 		}
 	}
 

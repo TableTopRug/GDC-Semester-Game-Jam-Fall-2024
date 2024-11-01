@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using Godot;
-
+using Godot.Collections;
 
 public partial class SplatterTile : TileMapLayer
 {
@@ -15,10 +15,11 @@ public partial class SplatterTile : TileMapLayer
 	/// <summary>
 	/// 	Contains the Source ID of the pattern texture and the source ID of the colored pattern texture
 	/// </summary>
-	static Dictionary<int, int> patternIds;
+	// static Dictionary<int, int> patternIds;
 	static string testPicPath = "res://Assets/Test/Patterns";
 	static string testResPath = "res://Resources/Test/Patterns";
 	private static RandomNumberGenerator rng = new RandomNumberGenerator();
+
 
 
 	/// <summary>
@@ -103,14 +104,30 @@ public partial class SplatterTile : TileMapLayer
 	}
 	
 	/// <summary>
-	/// 	Gets the part of the splatter pattern that affects a specific tile
+	/// 	Gets the part of a new splatter pattern that affects a specific tile if it exists, or creates one
 	/// </summary>
 	/// <param name="tilePos">The position of the tile being checked.</param>
 	/// <param name="tilePixels">The size (x, y) of the tile being checked.</param>
-	/// <returns></returns>
+	/// <returns>Boolean matrix representing the pixes that are affected</returns>
 	public bool[,] GetSplatterPatternPixelsForTile(Vector2I tilePos, Vector2I tilePixels)
 	{
-		(int, Vector2I, int) pattern = GetRandomSplatterPatternImage();
+		(int, Vector2I, int) pattern;
+		List<Vector2I> cells = this.GetUsedCells().ToList();
+
+		if (cells.Contains(tilePos)) 
+		{
+			pattern = (
+				GetCellSourceId(tilePos),
+				GetCellAtlasCoords(tilePos),
+				GetCellAlternativeTile(tilePos)
+			);
+		} 
+		else 
+		{
+			pattern = GetRandomSplatterPatternImage();
+		}
+
+
 		TileSetAtlasSource tsas = (TileSetAtlasSource)ts.GetSource(pattern.Item1);
 		bool[,] ret = new bool[tilePixels.Y,tilePixels.X];
 
@@ -129,6 +146,33 @@ public partial class SplatterTile : TileMapLayer
 		}
 		
 		return ret;
+	}
+
+	/// <summary>
+	/// 	Gets the location of the pattern that afects a specific tile (if it exists), or generates a new one if it does not.
+	/// </summary>
+	/// <param name="tilePos">The position of the tile in the [TileMapLayer]</param>
+	/// <param name="tilePixels">The size of the tile beign checked</param>
+	/// <returns>The source ID (int), atlas coordinates (Vector2I), and tile Alt. ID</returns>
+	public (int, Vector2I, int) GetSplatterPatternForTile(Vector2I tilePos) 
+	{
+		(int, Vector2I, int) pattern;
+		List<Vector2I> cells = this.GetUsedCells().ToList();
+		
+		if (cells.Contains(tilePos)) 
+		{
+			pattern = (
+				GetCellSourceId(tilePos),
+				GetCellAtlasCoords(tilePos),
+				GetCellAlternativeTile(tilePos)
+			);
+		} 
+		else 
+		{
+			pattern = GetRandomSplatterPatternImage();
+		}
+
+		return pattern;
 	}
 
 	/*public void GenerateAllSplatterPatternColorCombos(Image img)
@@ -216,6 +260,19 @@ public partial class SplatterTile : TileMapLayer
 			GD.Print($"Generated Pattern {pattern.Item1}: {((AtlasTexture)((TileSetAtlasSource)ts.GetSource(pattern.Item1)).Texture).Atlas.GetName()}, Atlas Coordinates: {pattern.Item2}, Tile ID: {pattern.Item3}");
 			this.SetCell(tilePos, pattern.Item1, pattern.Item2, pattern.Item3);
 		}
+	}
+
+	public void AddColorPattern(Vector2I pos, Vector2I tileSize, Image tileColor) {
+		var pattern = GetSplatterPatternForTile(pos);
+		bool[,] patternPixelMap = GetSplatterPatternPixelsForTile(pos, tileSize);
+		int altId = ((TileSetAtlasSource)ts.GetSource(pattern.Item1)).CreateAlternativeTile(pattern.Item2);
+
+		((TileSetAtlasSource)ts.GetSource(pattern.Item1)).GetTileData(pattern.Item2, altId).Modulate = new Color(1, 0, 0, 1);
+		// for (int y = 0; y < patternPixelMap.GetLength(0); y++) {
+		// 	for (int x = 0; x < patternPixelMap.Length / patternPixelMap.GetLength(0); x++) {
+				
+		// 	}
+		// }
 	}
 
 	// Called when the node enters the scene tree for the first time.

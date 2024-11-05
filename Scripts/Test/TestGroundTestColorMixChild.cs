@@ -27,14 +27,14 @@ public partial class TestGroundTestColorMixChild : TileMapLayer
 
 		for (int i = 1; i <= numPatterns; i++) {
 			int idx = rng.RandiRange(0, numStuff - i);
-			splatterTile.GeneratePatternDistribution(validCells[idx]);
+			splatterTile.GeneratePatternAtPos(validCells[idx], this.TileSet.TileSize, new Image());
 			patternTiles.Add(validCells[idx]);
 			validCells.RemoveAt(idx);
 		}
 
-		foreach (Vector2I pos in patternTiles) {
-			splatterTile.AddColorPattern(pos, this.TileSet.TileSize, new Image());
-		}
+		// foreach (Vector2I pos in patternTiles) {
+		// 	splatterTile.AddColorPattern(pos, this.TileSet.TileSize, new Image());
+		// }
 	}
 
 	/*public void GenerateSplatterPatternColorVariants()

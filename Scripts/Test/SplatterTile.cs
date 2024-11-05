@@ -84,12 +84,12 @@ public partial class SplatterTile : TileMapLayer
 		Vector2I tileAtlasCoords = tss.GetTileId(tileId);
 
 		Image img = GetImageFromAtlas((TileSetAtlasSource)tss, atlasCoords);
-		GD.Print($"H: {img.GetHeight()}, W: {img.GetWidth()}");
+		// GD.Print($"H: {img.GetHeight()}, W: {img.GetWidth()}");
 
 		int imgH = tileSize.Y - atlasCoords.Y;
 		int imgW = tileSize.Y - atlasCoords.Y;
 		bool[,] alphaMap = new bool[imgH, imgW];
-		GD.Print($"Texture: {img != null}: H={imgH}, W={imgW}");
+		// GD.Print($"Texture: {img != null}: H={imgH}, W={imgW}");
 
 		for (int y = 0; y < imgH; y++) {
 			for (int x = 0; x < imgW; x++) {
@@ -217,6 +217,7 @@ public partial class SplatterTile : TileMapLayer
 		foreach (string name in pics) 
 		{
 			Image img = Image.LoadFromFile($"{testPicPath}/{name}");
+			// Image img = GD.Load<Image>($"{testPicPath}/{name}");
 			AtlasTexture aTex = new AtlasTexture();
 			aTex.Atlas = ImageTexture.CreateFromImage(img);
 			aTex.Atlas.ResourceName = name;
@@ -250,7 +251,7 @@ public partial class SplatterTile : TileMapLayer
 		GD.Print(atlasTexName);
 	}
 
-	public void GeneratePatternDistribution(Vector2I tilePos) {
+	public void GeneratePatternAtPos(Vector2I tilePos, Vector2I tileSize, Image tileColor) {
 		int i = rng.RandiRange(0, 100);
 		// GD.Print($"{i} and {splatterGenerationChance}: {i <= splatterGenerationChance}");
 
@@ -258,22 +259,25 @@ public partial class SplatterTile : TileMapLayer
 			var pattern = GetRandomSplatterPatternImage();
 			// GD.Print(pattern);
 			GD.Print($"Generated Pattern {pattern.Item1}: {((AtlasTexture)((TileSetAtlasSource)ts.GetSource(pattern.Item1)).Texture).Atlas.GetName()}, Atlas Coordinates: {pattern.Item2}, Tile ID: {pattern.Item3}");
+			// AddColorPattern(tilePos, tileSize, tileColor);
 			this.SetCell(tilePos, pattern.Item1, pattern.Item2, pattern.Item3);
 		}
 	}
 
-	public void AddColorPattern(Vector2I pos, Vector2I tileSize, Image tileColor) {
+	/* public void AddColorPattern(Vector2I pos, Vector2I tileSize, Image tileColor) {
 		var pattern = GetSplatterPatternForTile(pos);
 		bool[,] patternPixelMap = GetSplatterPatternPixelsForTile(pos, tileSize);
 		int altId = ((TileSetAtlasSource)ts.GetSource(pattern.Item1)).CreateAlternativeTile(pattern.Item2);
 
+		GD.Print($"{pattern.Item2}: {((TileSetAtlasSource)ts.GetSource(pattern.Item1)).GetTileData(pattern.Item2, altId).Modulate}");
 		((TileSetAtlasSource)ts.GetSource(pattern.Item1)).GetTileData(pattern.Item2, altId).Modulate = new Color(1, 0, 0, 1);
+		GD.Print($"\t{((TileSetAtlasSource)ts.GetSource(pattern.Item1)).GetTileData(pattern.Item2, altId).Modulate}");
 		// for (int y = 0; y < patternPixelMap.GetLength(0); y++) {
 		// 	for (int x = 0; x < patternPixelMap.Length / patternPixelMap.GetLength(0); x++) {
 				
 		// 	}
 		// }
-	}
+	} */
 
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()

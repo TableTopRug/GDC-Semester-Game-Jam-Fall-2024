@@ -35,9 +35,9 @@ tile_set = SubResource("TileSet_pwd3m")
 script = ExtResource("3_1yby7")
 splatterGenerationChance = 70
 
+[node name="Player" parent="." instance=ExtResource("4_4q4eo")]
+position = Vector2(49, 48)
+
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(63, 64)
 zoom = Vector2(4, 4)
-
-[node name="Player" parent="." instance=ExtResource("4_4q4eo")]
-position = Vector2(49, 48)

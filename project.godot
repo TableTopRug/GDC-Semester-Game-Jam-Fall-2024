@@ -21,11 +21,11 @@ project/assembly_name="GDC Semester Game Jam Fall 2024"
 [layer_names]
 
 2d_physics/layer_1="player"
-2d_physics/layer_2="ground"
-2d_physics/layer_3="other terrain"
-2d_physics/layer_4="liquid"
-2d_physics/layer_5="item"
-2d_physics/layer_6="attack"
+2d_physics/layer_2="enemy"
+2d_physics/layer_3="ground"
+2d_physics/layer_4="background"
+2d_physics/layer_5="foreground"
+2d_physics/layer_6="interactable"
 
 [rendering]
 

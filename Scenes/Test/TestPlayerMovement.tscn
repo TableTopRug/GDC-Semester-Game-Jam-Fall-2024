@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=4 uid="uid://q4n64p7xcgi0"]
+[gd_scene load_steps=8 format=4 uid="uid://q4n64p7xcgi0"]
 
 [ext_resource type="Texture2D" uid="uid://b72rf2fplw8x6" path="res://Assets/Test/Floor Tiles.png" id="1_4qvfl"]
 [ext_resource type="Script" path="res://Scripts/Test/TestGroundTestColorMixChild.cs" id="2_h2xme"]
 [ext_resource type="Script" path="res://Scripts/Test/SplatterTile.cs" id="3_1yby7"]
+[ext_resource type="PackedScene" uid="uid://ct5gteqo34b7m" path="res://Scenes/Characters/player.tscn" id="4_4q4eo"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_sdsx5"]
 texture = ExtResource("1_4qvfl")
@@ -33,6 +34,9 @@ script = ExtResource("2_h2xme")
 tile_set = SubResource("TileSet_pwd3m")
 script = ExtResource("3_1yby7")
 splatterGenerationChance = 70
+
+[node name="Player" parent="." instance=ExtResource("4_4q4eo")]
+position = Vector2(49, 48)
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(63, 64)

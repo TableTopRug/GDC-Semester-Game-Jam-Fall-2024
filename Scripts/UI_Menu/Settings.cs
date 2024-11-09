@@ -3,6 +3,11 @@ using System;
 
 public partial class Settings : PanelContainer
 {
+	[ExportGroup("Menu Music")]
+	[Export]
+	public float menuMusicVol = 0;
+
+
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
@@ -13,7 +18,8 @@ public partial class Settings : PanelContainer
 	{
 	}
 
-	public void OnSliderUpdate() {
-		
+	public void OnSliderValueChanged(float val) {
+		menuMusicVol = val;
+
 	}
 }

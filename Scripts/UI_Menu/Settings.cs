@@ -5,12 +5,17 @@ public partial class Settings : PanelContainer
 {
 	[ExportGroup("Menu Music")]
 	[Export]
+	public MarginContainer MenuMusicVolume;
+	[Export]
 	public float menuMusicVol = 0;
 
 
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
+		if (MenuMusicVolume == null) {
+			MenuMusicVolume = this.
+		}
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -20,6 +25,6 @@ public partial class Settings : PanelContainer
 
 	public void OnSliderValueChanged(float val) {
 		menuMusicVol = val;
-		GD.Print(menuMusicVol);
+		// GD.Print(menuMusicVol);
 	}
 }

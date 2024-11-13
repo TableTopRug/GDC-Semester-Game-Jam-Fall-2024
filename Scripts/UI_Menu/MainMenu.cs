@@ -37,5 +37,12 @@ public partial class MainMenu : MarginContainer
 		SettingsMenu.Visible = true;
 	}
 
-	
+	public void OnSettingsReturn() {
+		SettingsMenu.Visible = false;
+		MainMenuDisplay.Visible = true;
+	}
+
+	public void OnQuitButtonPressed() {
+		GetTree().Quit();
+	}
 }

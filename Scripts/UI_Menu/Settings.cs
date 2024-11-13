@@ -20,6 +20,6 @@ public partial class Settings : PanelContainer
 
 	public void OnSliderValueChanged(float val) {
 		menuMusicVol = val;
-
+		GD.Print(menuMusicVol);
 	}
 }

@@ -1,0 +1,28 @@
+[gd_scene format=3 uid="uid://cr3s42sao8vmx"]
+
+[node name="Credits" type="PanelContainer"]
+offset_right = 1152.0
+offset_bottom = 648.0
+
+[node name="Credits" type="MarginContainer" parent="."]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Credits"]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Credits/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Credits/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+size_flags_vertical = 0
+text = "Ideas: "
+
+[node name="Ideas" type="Label" parent="Credits/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "nono_27
+TableTopRug"

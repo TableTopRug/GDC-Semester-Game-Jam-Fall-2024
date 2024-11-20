@@ -16,8 +16,8 @@ public partial class SplatterTile : TileMapLayer
 	/// 	Contains the Source ID of the pattern texture and the source ID of the colored pattern texture
 	/// </summary>
 	// static Dictionary<int, int> patternIds;
-	static string testPicPath = "res://Assets/Test/Patterns";
-	static string testResPath = "res://Resources/Test/Patterns";
+	static string testPicPath = "res://Assets/Patterns";
+	static string testResPath = "res://Resources/Patterns";
 	private static RandomNumberGenerator rng = new RandomNumberGenerator();
 
 
@@ -210,7 +210,7 @@ public partial class SplatterTile : TileMapLayer
 		}
 		catch (Exception e)
 		{
-			GD.Print("An error occurred when trying to access the path.");
+			GD.PrintErr("An error occurred when trying to access the path.\n\t" + e.Message);
 		}
 
 		//compare the names of what already exists\

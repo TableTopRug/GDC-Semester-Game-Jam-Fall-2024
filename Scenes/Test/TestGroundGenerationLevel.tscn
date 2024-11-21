@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://y8trx8y0mibv"]
 
 [ext_resource type="Texture2D" uid="uid://b72rf2fplw8x6" path="res://Assets/Test/Floor Tiles.png" id="1_mn7ta"]
-[ext_resource type="Texture2D" uid="uid://bgxlgsnyb6i1a" path="res://Assets/Test/Patterns/splatter_pattern_0.png" id="2_l4twn"]
+[ext_resource type="Texture2D" uid="uid://bgxlgsnyb6i1a" path="res://Assets/Patterns/splatter_pattern_0.png" id="2_l4twn"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_521v5"]
 texture = ExtResource("1_mn7ta")

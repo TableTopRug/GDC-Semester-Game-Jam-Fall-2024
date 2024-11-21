@@ -33,7 +33,18 @@ public abstract partial class Character : CharacterBody2D
 
 		// Get the input direction and handle the movement/deceleration.
 		// As good practice, you should replace UI actions with custom gameplay actions.
-		Vector2 direction = Input.GetVector("player_move_left", "player_move_right", "player_move_up", "player_move_down");
+		Vector2 direction = Vector2.Zero;
+		// direction = Input.GetVector("player_move_left", "player_move_right", "player_move_up", "player_move_down");
+		if (Input.IsActionPressed("player_move_left")) {
+			direction = Vector2I.Left;
+		} else if (Input.IsActionPressed("player_move_right")) {
+			direction = Vector2I.Right;
+		} else if (Input.IsActionPressed("player_move_up")) {
+			direction = Vector2I.Up;
+		} else if (Input.IsActionPressed("player_move_down")) {
+			direction = Vector2I.Down;
+		}
+
 		if (direction != Vector2.Zero)
 		{
 			velocity.X = direction.X * Speed;

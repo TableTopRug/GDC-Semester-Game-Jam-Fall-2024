@@ -22,7 +22,7 @@ image = SubResource("Image_c0ncx")
 
 [node name="Player" type="CharacterBody2D"]
 scale = Vector2(0.5, 0.5)
-collision_mask = 35
+collision_mask = 39
 script = ExtResource("1_cr5en")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]

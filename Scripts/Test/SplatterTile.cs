@@ -258,7 +258,7 @@ public partial class SplatterTile : TileMapLayer
 		if (i <= splatterGenerationChance) {
 			var pattern = GetRandomSplatterPatternImage();
 			// GD.Print(pattern);
-			GD.Print($"Generated Pattern {pattern.Item1}: {((AtlasTexture)((TileSetAtlasSource)ts.GetSource(pattern.Item1)).Texture).Atlas.GetName()}, Atlas Coordinates: {pattern.Item2}, Tile ID: {pattern.Item3}");
+			// GD.Print($"Generated Pattern {pattern.Item1}: {((AtlasTexture)((TileSetAtlasSource)ts.GetSource(pattern.Item1)).Texture).Atlas.GetName()}, Atlas Coordinates: {pattern.Item2}, Tile ID: {pattern.Item3}");
 			// AddColorPattern(tilePos, tileSize, tileColor);
 			this.SetCell(tilePos, pattern.Item1, pattern.Item2, pattern.Item3);
 		}

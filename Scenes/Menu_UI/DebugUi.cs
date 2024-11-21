@@ -22,7 +22,7 @@ public partial class DebugUi : Control
 
     public override void _Input(InputEvent @event)
     {
-		if (@event is InputEventKey evt and not ) {
+		if (@event is InputEventKey evt && !evt.Echo) {
 			switch (evt.Keycode) {
 				case Key.W:
 				case Key.A:
@@ -47,18 +47,24 @@ public partial class DebugUi : Control
     // Called every frame. 'delta' is the elapsed time since the previous frame.
     public override void _Process(double delta)
 	{
+		//THIS IS NOT LEFT RIGHT UP DOWN
+		// Vector2 direction = Input.GetVector("player_move_left", "player_move_right", "player_move_up", "player_move_down");
 		if (Input.IsActionPressed("player_move_left")) {
 			highlight.Visible = true;
 			highlight.Position = LEFT_POS;
+			// GD.Print($"Input: {direction}");
 		} else if (Input.IsActionPressed("player_move_right")) {
 			highlight.Visible = true;
 			highlight.Position = RIGHT_POS;
+			// GD.Print($"Input: {direction}");
 		} else if (Input.IsActionPressed("player_move_up")) {
 			highlight.Visible = true;
 			highlight.Position = UP_POS;
+			// GD.Print($"Input: {direction}");
 		} else if (Input.IsActionPressed("player_move_down")) {
 			highlight.Visible = true;
 			highlight.Position = DOWN_POS;
+			// GD.Print($"Input: {direction}");
 		} else {
 			highlight.Visible = false;
 		}

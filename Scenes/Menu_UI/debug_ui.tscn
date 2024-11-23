@@ -7,7 +7,7 @@
 [node name="Debug UI" type="CanvasLayer" node_paths=PackedStringArray("highlight", "wasd", "arrowKeys")]
 script = ExtResource("1_s2phv")
 UP_POS = Vector2i(110, 90)
-highlight = NodePath("MarginContainer/Rows/Bot Row/ColorRect")
+highlight = NodePath("MarginContainer/Rows/Bot Row/Input Display/ColorRect")
 wasd = NodePath("MarginContainer/Rows/Bot Row/Input Display/WASD")
 arrowKeys = NodePath("MarginContainer/Rows/Bot Row/Input Display/Arrow Keys")
 
@@ -58,7 +58,7 @@ size_flags_vertical = 0
 texture = ExtResource("3_pkarl")
 expand_mode = 1
 
-[node name="ColorRect" type="ColorRect" parent="MarginContainer/Rows/Bot Row"]
+[node name="ColorRect" type="ColorRect" parent="MarginContainer/Rows/Bot Row/Input Display"]
 custom_minimum_size = Vector2(80, 80)
 layout_mode = 2
 size_flags_horizontal = 0

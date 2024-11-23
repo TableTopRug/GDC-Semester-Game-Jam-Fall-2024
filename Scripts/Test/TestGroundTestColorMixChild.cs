@@ -6,8 +6,9 @@ using static Godot.Collections.Array;
 
 public partial class TestGroundTestColorMixChild : TileMapLayer
 {
+	[Export]
+	public bool splatter = true;
 	private SplatterTile splatterTile;
-
 	private static RandomNumberGenerator rng = new RandomNumberGenerator();
 
 
@@ -56,8 +57,10 @@ public partial class TestGroundTestColorMixChild : TileMapLayer
 	public override void _Ready()
 	{
 		splatterTile = this.GetChild<SplatterTile>(0);
-
-		SplatterColorsOnTiles();
+		
+		if (splatter) {
+			SplatterColorsOnTiles();
+		}
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.

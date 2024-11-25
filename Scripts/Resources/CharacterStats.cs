@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using Godot;
 
 
@@ -16,6 +17,18 @@ namespace GDCFall24GameJam
 		protected int Intelligence;
 		[Export]
 		protected int Wisdom;
+
+		private List<Modifier<CharStatMods>> Modifiers;
+
+		public enum CharStatMods {
+
+            VITALITY,
+            STRENGTH,
+            DEXTERITY,
+            INTELLIGENCE,
+            WISDOM,
+            num_types_modifiers
+        }
 
 
 		/// <summary>

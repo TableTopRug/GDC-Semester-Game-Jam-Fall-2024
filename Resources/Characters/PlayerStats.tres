@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="PlayerStats" load_steps=2 format=3 uid="uid://dvg3hxdtes444"]
+
+[ext_resource type="Script" path="res://Scripts/Resources/PlayerStats.cs" id="1_ajexy"]
+
+[resource]
+script = ExtResource("1_ajexy")
+Health = 0.0
+Mana = 0.0
+Attack = 0.0
+Defense = 0.0
+Magic = 0.0
+Speed = 0.0
+Resistence = PackedFloat32Array(0, 0, 0, 0, 0, 0)
+Vitality = 0
+Strength = 0
+Dexterity = 0
+Intelligence = 0
+Wisdom = 0

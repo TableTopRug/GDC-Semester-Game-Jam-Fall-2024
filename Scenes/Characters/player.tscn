@@ -1,23 +1,8 @@
-[gd_scene load_steps=9 format=3 uid="uid://ct5gteqo34b7m"]
+[gd_scene load_steps=8 format=3 uid="uid://ct5gteqo34b7m"]
 
 [ext_resource type="Script" path="res://Scripts/Characters/PlayerCharacter.cs" id="1_kpx3o"]
+[ext_resource type="Resource" uid="uid://dvg3hxdtes444" path="res://Resources/Characters/PlayerStats.tres" id="2_466du"]
 [ext_resource type="PackedScene" uid="uid://ppqc7eiqvsaa" path="res://Scenes/UI_Menu/debug_ui.tscn" id="2_g8578"]
-[ext_resource type="Script" path="res://Scripts/Resources/PlayerStats.cs" id="2_wk1o8"]
-
-[sub_resource type="Resource" id="Resource_6w8r4"]
-script = ExtResource("2_wk1o8")
-Health = 0.0
-Mana = 0.0
-Attack = 0.0
-Defense = 0.0
-Magic = 0.0
-Speed = 0.0
-Resistence = PackedFloat32Array(0, 0, 0, 0, 0, 0)
-Vitality = 0
-Strength = 0
-Dexterity = 0
-Intelligence = 0
-Wisdom = 0
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_0nktr"]
 
@@ -41,7 +26,7 @@ image = SubResource("Image_tqq38")
 scale = Vector2(0.5, 0.5)
 collision_mask = 35
 script = ExtResource("1_kpx3o")
-stats = SubResource("Resource_6w8r4")
+stats = ExtResource("2_466du")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 visible = false

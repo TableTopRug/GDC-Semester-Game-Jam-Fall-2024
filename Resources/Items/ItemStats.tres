@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="ItemStats" load_steps=2 format=3 uid="uid://eexw8rmw4yqp"]
+
+[ext_resource type="Script" path="res://Scripts/Resources/ItemStats.cs" id="1_koqbs"]
+
+[resource]
+script = ExtResource("1_koqbs")
+MaxDurability = 0
+CurrentDurability = 0
+Defense = 0

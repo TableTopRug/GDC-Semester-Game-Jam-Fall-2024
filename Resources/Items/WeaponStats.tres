@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="WeaponStats" load_steps=2 format=3 uid="uid://blwywxnl1ot8x"]
+
+[ext_resource type="Script" path="res://Scripts/Resources/WeaponStats.cs" id="1_jhwr7"]
+
+[resource]
+script = ExtResource("1_jhwr7")
+Damage = PackedFloat32Array(0, 0, 0, 0)
+MaxDurability = 0
+CurrentDurability = 0
+Defense = 0

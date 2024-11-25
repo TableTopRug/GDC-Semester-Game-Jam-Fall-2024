@@ -25,7 +25,7 @@ namespace GDCFall24GameJam
         [Export]
 		private float[] Resistence = new float[(int)PlayerStatMods.RESISTENCE];
 
-        private List<Modifier<PlayerStatMods>> Modifiers;
+        public List<Modifier<PlayerStatMods>> Modifiers;
 
         public enum PlayerStatMods {
             HEALTH,
@@ -44,8 +44,17 @@ namespace GDCFall24GameJam
 		/// Base Stat: [Vitality]
 		/// </summary>
         /// <returns>Health</returns>
-		public float HP() {
+		public float MaxHP() {
 			return MaxHealth;
+		}
+
+        /// <summary>
+		/// Represents amount of damage a character can take before dying
+		/// Base Stat: [Vitality]
+		/// </summary>
+        /// <returns>Health</returns>
+		public float CurrentHP() {
+			return CurrentHealth;
 		}
 
 		/// <summary>
@@ -151,28 +160,28 @@ namespace GDCFall24GameJam
         }
 
         public void UpdateHP() {
-            MaxHealth = Vitality * GetModifiers(PlayerStatMods.HEALTH);
+            MaxHealth = Vitality * 2.5f;
             CurrentHealth = MaxHealth;
         }
 
         public void UpdateMP() {
-            Mana = (float)((.8 * Wisdom + .2 * Intelligence) * GetModifiers(PlayerStatMods.MANA));
+            Mana = (float)(.8 * Wisdom + .4 * Intelligence);
         }
 
         public void UpdateATK() {
-            Attack = (float)((.7 * Strength + .3 * Dexterity) * GetModifiers(PlayerStatMods.ATTACK));
+            Attack = (float)(.8 * Strength + .3 * Dexterity);
         }
 
         public void UpdateDEF() {
-            Defense = (float)((.45 * Strength + .55 * Dexterity) * GetModifiers(PlayerStatMods.DEFENSE));
+            Defense = (float)(.6 * Strength + .5 * Dexterity);
         }
 
         public void UpdateMAG() {
-            Magic = (float)((.2 * Wisdom + .8 * Intelligence) * GetModifiers(PlayerStatMods.MAGIC));
+            Magic = (float)(.25 * Wisdom + .8 * Intelligence);
         }
 
         public void UpdateSPD(float weight) {
-            Speed = (float)(((.65 * Strength + .35 * Dexterity) * GetModifiers(PlayerStatMods.SPEED)) - .35 * weight);
+            Speed = (float)(.75 * Strength + .35 * Dexterity - .2 * weight);
         }
 
         public void UpdateRES() {

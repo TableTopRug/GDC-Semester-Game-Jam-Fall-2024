@@ -4,13 +4,13 @@ using System;
 public partial class DebugUi : CanvasLayer
 {
 	[Export]
-	public Vector2I LEFT_POS = new Vector2I(280, 220);
+	public Vector2I LEFT_POS = new Vector2I(827, 512);
 	[Export]
-	public Vector2I RIGHT_POS = new Vector2I(472, 220);
+	public Vector2I RIGHT_POS = new Vector2I(1017, 512);
 	[Export]
-	public Vector2I UP_POS = new Vector2I(110, 80);
+	public Vector2I UP_POS = new Vector2I(924, 417);
 	[Export]
-	public Vector2I DOWN_POS = new Vector2I(376, 220);
+	public Vector2I DOWN_POS = new Vector2I(922, 512);
 
 	[Export]
     public ColorRect highlight;
@@ -40,14 +40,14 @@ public partial class DebugUi : CanvasLayer
 				case Key.A:
 				case Key.S:
 				case Key.D:
-					arrowKeys.Visible = this.Visible && false;
+					arrowKeys.Visible = false;
 					wasd.Visible = this.Visible && true;
 					break;
 				case Key.Left:
 				case Key.Right:
 				case Key.Up:
 				case Key.Down:
-					wasd.Visible = this.Visible && false;
+					wasd.Visible = false;
 					arrowKeys.Visible = this.Visible && true;
 					break;
 			}
@@ -78,7 +78,7 @@ public partial class DebugUi : CanvasLayer
 				highlight.Visible = true;
 				highlight.Position = DOWN_POS;
 				// GD.Print($"Input: {direction}");
-			} else {
+			} else if (highlight.Visible) {
 				highlight.Visible = false;
 			}
 		}

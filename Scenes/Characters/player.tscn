@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://ct5gteqo34b7m"]
 
 [ext_resource type="Script" path="res://Scripts/Characters/PlayerCharacter.cs" id="1_kpx3o"]
-[ext_resource type="PackedScene" uid="uid://ppqc7eiqvsaa" path="res://Scenes/Menu_UI/debug_ui.tscn" id="2_g8578"]
+[ext_resource type="PackedScene" uid="uid://ppqc7eiqvsaa" path="res://Scenes/UI_Menu/debug_ui.tscn" id="2_g8578"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_0nktr"]
 

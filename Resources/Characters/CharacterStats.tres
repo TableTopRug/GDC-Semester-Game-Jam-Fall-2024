@@ -1,0 +1,8 @@
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://c4cw7884281d7"]
+
+[sub_resource type="CSharpScript" id="CSharpScript_guy21"]
+script/source = "using Godot;
+"
+
+[resource]
+script = SubResource("CSharpScript_guy21")

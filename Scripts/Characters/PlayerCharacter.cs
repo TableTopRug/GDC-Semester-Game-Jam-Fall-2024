@@ -1,8 +1,13 @@
+using GDCFall24GameJam;
 using Godot;
 using System;
 
 public partial class PlayerCharacter : Character
 {
+	[Export]
+	public PlayerStats stats;
+
+
 	public override void _PhysicsProcess(double delta)
 	{
 		Vector2 velocity = Velocity;
@@ -22,7 +27,7 @@ public partial class PlayerCharacter : Character
 			direction += Vector2I.Down;
 		}
 
-		GD.Print($"{direction}");
+		// GD.Print($"{direction}");
 		if (direction != Vector2.Zero)
 		{
 			direction = direction.X == direction.Y ? direction * .7f : direction;

@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using Godot;
 using Godot.Collections;
@@ -25,18 +26,7 @@ namespace GDCFall24GameJam
         [Export]
 		private float[] Resistence = new float[(int)PlayerStatMods.RESISTENCE];
 
-        public List<Modifier<PlayerStatMods>> Modifiers;
-
-        public enum PlayerStatMods {
-            HEALTH,
-            MANA,
-            ATTACK,
-            DEFENSE,
-            MAGIC,
-            SPEED,
-            RESISTENCE,
-            num_types_modifiers
-        }
+        public new List<Modifier<Type>> Modifiers;
 
 
         /// <summary>

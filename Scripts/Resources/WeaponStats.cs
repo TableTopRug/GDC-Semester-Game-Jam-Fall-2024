@@ -9,6 +9,6 @@ namespace GDCFall24GameJam
         [Export]
         public float[] Damage = new float[(int)DamageType.num_types_damage];
 
-        public List<Modifier<DamageType>> Modifiers;
+        public List<Modifier<DamageType>> damageTypeMods;
     }
 }

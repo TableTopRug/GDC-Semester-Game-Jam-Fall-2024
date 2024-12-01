@@ -26,7 +26,7 @@ namespace GDCFall24GameJam
         [Export]
 		private float[] Resistence = new float[(int)PlayerStatMods.RESISTENCE];
 
-        public new List<Modifier<Type>> Modifiers;
+        public List<Modifier<PlayerStatMods>> playerStatMods;
 
 
         /// <summary>

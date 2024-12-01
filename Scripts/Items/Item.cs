@@ -7,6 +7,8 @@ using System.Collections.Generic;
 public partial class Item : Area2D
 {
 	[Export]
+	public string name;
+	[Export]
 	public ItemStats stats;
 
 

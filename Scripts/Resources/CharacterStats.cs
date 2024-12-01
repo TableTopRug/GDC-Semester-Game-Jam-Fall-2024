@@ -18,7 +18,7 @@ namespace GDCFall24GameJam
 		[Export]
 		protected int Wisdom;
 
-		public List<Modifier<CharStatMods>> Modifiers;
+		public List<Modifier<CharStatMods>> charStatMods;
 
 
 		/// <summary>

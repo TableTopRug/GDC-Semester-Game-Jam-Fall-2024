@@ -15,13 +15,6 @@ namespace GDCFall24GameJam
         [Export]
         public int Uses;
         
-        public List<Modifier<ItemStatMods>> Modifiers;
-
-        public enum ItemStatMods {
-            MAX_DURABILITY,
-            MURABILITY_CHANGE,
-            DEFENSE,
-            num_types_modifiers
-        }
+        public List<Modifier<ItemStatMods>> itemStatMods;
     }
 }

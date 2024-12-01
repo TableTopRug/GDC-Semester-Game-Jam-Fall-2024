@@ -9,7 +9,6 @@ namespace GDCFall24GameJam {
     }
 
     public enum CharStatMods {
-
         VITALITY,
         STRENGTH,
         DEXTERITY,
@@ -26,6 +25,13 @@ namespace GDCFall24GameJam {
         MAGIC,
         SPEED,
         RESISTENCE,
+        num_types_modifiers
+    }
+
+    public enum ItemStatMods {
+        MAX_DURABILITY,
+        MURABILITY_CHANGE,
+        DEFENSE,
         num_types_modifiers
     }
 }

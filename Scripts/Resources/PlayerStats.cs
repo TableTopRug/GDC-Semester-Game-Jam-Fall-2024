@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Reflection.Metadata.Ecma335;
 using Godot;
 using Godot.Collections;
 
@@ -7,7 +8,7 @@ using Godot.Collections;
 namespace GDCFall24GameJam
 {
 	[GlobalClass]
-	public partial class PlayerStats : CharacterStats
+	public partial class PlayerStats : CharacterStats, IStats<PlayerStatMods>
 	{
 		[Export]
 		private float MaxHealth;
@@ -26,15 +27,33 @@ namespace GDCFall24GameJam
         [Export]
 		private float[] Resistence = new float[(int)PlayerStatMods.RESISTENCE];
 
-        public List<Modifier<PlayerStatMods>> PlayerModifiers {get; set;}
+        public new List<Modifier<PlayerStatMods>> Modifiers { get; set; }
+
+
+        public List<Modifier<T>> GetModifiers<T>(T type) where T: struct, Enum
+        {
+            if (typeof(T)== typeof(PlayerStatMods)) 
+            {
+                return new List<Modifier<T>>((IEnumerable<Modifier<T>>)Modifiers);
+            } 
+            else if (typeof(T)== typeof(CharStatMods)) 
+            {
+                return new List<Modifier<T>>((IEnumerable<Modifier<T>>)base.Modifiers);
+            } 
+            else 
+            {
+                throw new ArgumentException();
+            }
+        }
 
 
         /// <summary>
-		/// Represents amount of damage a character can take before dying
-		/// Base Stat: [Vitality]
-		/// </summary>
+        /// Represents amount of damage a character can take before dying
+        /// Base Stat: [Vitality]
+        /// </summary>
         /// <returns>Health</returns>
-		public float MaxHP() {
+        public float MaxHP() 
+        {
 			return MaxHealth;
 		}
 
@@ -108,35 +127,6 @@ namespace GDCFall24GameJam
         /// <returns>Resistence</returns>
         public float[] RES() {
             return Resistence;
-        }
-
-        public float GetModifiers(PlayerStatMods type) {
-            var mods = PlayerModifiers.FindAll(mod => mod.Class == type);
-            float ret = 1;
-            Array<float> mults = new Array<float>();
-
-
-            foreach (var mod in mods) {
-                switch (mod.Type) {
-                    case Modifier<PlayerStatMods>.ModType.ADD:
-                        ret += mod.Value;
-                        break;
-                    case Modifier<PlayerStatMods>.ModType.SUB:
-                        ret -= mod.Value;
-                        break;
-                    case Modifier<PlayerStatMods>.ModType.MULT:
-                        mults.Add(mod.Value);
-                        break;
-                }
-            }
-
-            mults.Sort();
-
-            foreach (float val in mults) {
-                ret *= val;
-            }
-
-            return ret;
         }
         
         public void UpdateAll(float weight) {

@@ -1,10 +1,15 @@
-[gd_scene load_steps=2 format=3 uid="uid://72xdi7u1gan"]
+[gd_scene load_steps=3 format=3 uid="uid://72xdi7u1gan"]
 
 [ext_resource type="Script" path="res://Scripts/Items/Item.cs" id="1_ad2l4"]
+[ext_resource type="Resource" uid="uid://eexw8rmw4yqp" path="res://Resources/Items/ItemStats.tres" id="2_t3a1v"]
 
-[node name="Item" type="Area2D"]
+[node name="Item" type="Area2D" node_paths=PackedStringArray("pickupRange")]
 script = ExtResource("1_ad2l4")
+stats = ExtResource("2_t3a1v")
+pickupRange = NodePath("pickuprange")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 
 [node name="pickuprange" type="Area2D" parent="."]
+
+[connection signal="body_entered" from="pickuprange" to="." method="OnPickupRangeEntered"]

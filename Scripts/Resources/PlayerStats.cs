@@ -159,7 +159,7 @@ namespace GDCFall24GameJam
 		/// <param name="DEX"></param>
 		/// <param name="INT"></param>
 		/// <param name="WIS"></param>
-		public new void LevelUp(int VIT, int STR, int DEX, int INT, int WIS, float weight) {
+		public void LevelUp(int VIT, int STR, int DEX, int INT, int WIS, float weight) {
             base.LevelUp(VIT, STR, DEX, INT, WIS);
 
             UpdateAll(weight);

@@ -4,7 +4,7 @@ using Godot.Collections;
 
 public interface IStats<T> where T : struct, Enum
 {
-    protected abstract List<Modifier<T>> Modifiers {get; set;}
+    public abstract List<Modifier<T>> Modifiers {get; set;}
 
     // public abstract List<Modifier<Enum>> GetModifiers();
     // public abstract void AddModifiers(List<Modifier<T>> mods);
@@ -40,5 +40,5 @@ public interface IStats<T> where T : struct, Enum
 
 public interface IIStats<V>: IStats<V> where V : struct, Enum
 {
-    public abstract List<Modifier<T>> GetModifiers<T>(T type) where T: struct, Enum;
+    public new abstract List<Modifier<T>> GetModifiers<T>(T type) where T: struct, Enum;
 }

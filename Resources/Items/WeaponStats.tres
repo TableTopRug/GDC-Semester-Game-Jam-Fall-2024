@@ -8,3 +8,4 @@ Damage = PackedFloat32Array(0, 0, 0, 0)
 MaxDurability = 0
 CurrentDurability = 0
 Defense = 0
+Uses = 0

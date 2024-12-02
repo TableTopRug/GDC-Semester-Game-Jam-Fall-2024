@@ -1,7 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://bcol6jkookb4t"]
-
-[ext_resource type="PackedScene" uid="uid://72xdi7u1gan" path="res://Scenes/Items/item.tscn" id="1_cu08b"]
-
-[node name="Sword" type="RigidBody2D"]
-
-[node name="Item" parent="." instance=ExtResource("1_cu08b")]

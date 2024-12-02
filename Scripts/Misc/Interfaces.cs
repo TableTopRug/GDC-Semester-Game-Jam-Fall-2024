@@ -37,3 +37,8 @@ public interface IStats<T> where T : struct, Enum
             return ret;
         }
 }
+
+public interface IIStats<V>: IStats<V> where V : struct, Enum
+{
+    public abstract List<Modifier<T>> GetModifiers<T>(T type) where T: struct, Enum;
+}

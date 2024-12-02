@@ -8,7 +8,7 @@ using Godot.Collections;
 namespace GDCFall24GameJam
 {
 	[GlobalClass]
-	public partial class PlayerStats : CharacterStats, IStats<PlayerStatMods>
+	public partial class PlayerStats : CharacterStats, IIStats<PlayerStatMods>
 	{
 		[Export]
 		private float MaxHealth;
@@ -28,23 +28,6 @@ namespace GDCFall24GameJam
 		private float[] Resistence = new float[(int)PlayerStatMods.RESISTENCE];
 
         public new List<Modifier<PlayerStatMods>> Modifiers { get; set; }
-
-
-        public List<Modifier<T>> GetModifiers<T>(T type) where T: struct, Enum
-        {
-            if (typeof(T)== typeof(PlayerStatMods)) 
-            {
-                return new List<Modifier<T>>((IEnumerable<Modifier<T>>)Modifiers);
-            } 
-            else if (typeof(T)== typeof(CharStatMods)) 
-            {
-                return new List<Modifier<T>>((IEnumerable<Modifier<T>>)base.Modifiers);
-            } 
-            else 
-            {
-                throw new ArgumentException();
-            }
-        }
 
 
         /// <summary>
@@ -181,5 +164,21 @@ namespace GDCFall24GameJam
 
             UpdateAll(weight);
         }
-	}
+
+        public List<Modifier<T>> GetModifiers<T>(T type) where T : struct, Enum
+        {
+            if (typeof(T)== typeof(PlayerStatMods)) 
+            {
+                return new List<Modifier<T>>((IEnumerable<Modifier<T>>)Modifiers);
+            } 
+            else if (typeof(T)== typeof(CharStatMods)) 
+            {
+                return new List<Modifier<T>>((IEnumerable<Modifier<T>>)base.Modifiers);
+            } 
+            else 
+            {
+                throw new ArgumentException();
+            }
+        }
+    }
 }

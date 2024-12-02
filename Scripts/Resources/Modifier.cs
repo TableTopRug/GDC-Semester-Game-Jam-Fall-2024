@@ -1,7 +1,7 @@
 using Godot;
 
 
-public partial class Modifier<T>: Resource where T: struct, System.Enum
+public partial class Modifier<T>: Resource where T: System.Enum
 {
         public enum ModType {
             ADD,

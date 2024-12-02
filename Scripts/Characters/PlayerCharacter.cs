@@ -5,7 +5,7 @@ using System;
 public partial class PlayerCharacter : Character
 {
 	[Export]
-	public PlayerStats stats;
+	public new PlayerStats stats;
 
 
 	public override void _PhysicsProcess(double delta)

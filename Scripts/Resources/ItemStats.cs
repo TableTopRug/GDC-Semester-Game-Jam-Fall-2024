@@ -5,7 +5,7 @@ using System.Collections.Generic;
 namespace GDCFall24GameJam
 {
 	[GlobalClass]
-	public partial class ItemStats : Resource, IStats {
+	public partial class ItemStats : Resource, IStats<ItemStatMods> {
         [Export]
         public int MaxDurability;
         [Export]
@@ -15,6 +15,6 @@ namespace GDCFall24GameJam
         [Export]
         public int Uses;
         
-        public List<Modifier<ItemStatMods>> itemStatMods;
+        public List<Modifier<ItemStatMods>> Modifiers {get; set;}
     }
 }

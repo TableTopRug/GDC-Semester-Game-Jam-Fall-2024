@@ -5,7 +5,7 @@ using Godot;
 namespace GDCFall24GameJam
 {
 	[GlobalClass]
-	public partial class CharacterStats : Resource, IStats
+	public partial class CharacterStats : Resource, IStats<CharStatMods>
 	{
 		[Export]
 		protected int Vitality;
@@ -18,7 +18,7 @@ namespace GDCFall24GameJam
 		[Export]
 		protected int Wisdom;
 
-		public List<Modifier<CharStatMods>> charStatMods;
+		public List<Modifier<CharStatMods>> Modifiers {get; set;}
 
 
 		/// <summary>
@@ -36,5 +36,5 @@ namespace GDCFall24GameJam
 			Intelligence += INT;
 			Wisdom += WIS;
 		}
-	}
+    }
 }

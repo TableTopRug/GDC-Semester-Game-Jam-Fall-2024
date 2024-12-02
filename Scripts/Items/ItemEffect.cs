@@ -4,6 +4,6 @@ using GDCFall24GameJam;
 using Godot;
 
 namespace GDCFall24GameJam {
-    public partial class ItemEffect : Effect<ItemStats, ItemStats.ItemStatMods> {
+    public partial class ItemEffect : Effect<ItemStats, ItemStatMods> {
     }
 }

@@ -26,7 +26,7 @@ namespace GDCFall24GameJam
         [Export]
 		private float[] Resistence = new float[(int)PlayerStatMods.RESISTENCE];
 
-        public List<Modifier<PlayerStatMods>> playerStatMods;
+        public List<Modifier<PlayerStatMods>> PlayerModifiers {get; set;}
 
 
         /// <summary>
@@ -111,7 +111,7 @@ namespace GDCFall24GameJam
         }
 
         public float GetModifiers(PlayerStatMods type) {
-            var mods = Modifiers.FindAll(mod => mod.Class == type);
+            var mods = PlayerModifiers.FindAll(mod => mod.Class == type);
             float ret = 1;
             Array<float> mults = new Array<float>();
 

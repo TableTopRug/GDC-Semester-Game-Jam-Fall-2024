@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using Godot;
 
 
-public partial class Effect<T, V>: Resource where T: IStats where V: struct, System.Enum {
+public partial class Effect<T, V>: Resource where T: IStats<V> where V: struct, System.Enum {
     public List<Modifier<V>> Modifiers;
 
 

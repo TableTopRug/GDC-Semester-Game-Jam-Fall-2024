@@ -26,11 +26,16 @@ public partial class PlayerCharacter : Character
 	
 	public override void _Ready()
     {
-		this.DebugWeapon.pickupRange.GetChild<CollisionShape2D>(0).Disabled = true;
-		this.Equipment.Add(DebugWeapon);
-
         base._Ready();
     }
+
+	public void DebugSetup()
+	{
+		GD.Print(DebugWeapon);
+
+		DebugWeapon.pickupRange.GetChild<CollisionShape2D>(0).SetDeferred(CollisionShape2D.PropertyName.Disabled, true);
+		this.Equipment.Add(DebugWeapon);
+	}
 
     public override void _PhysicsProcess(double delta)
 	{

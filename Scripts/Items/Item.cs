@@ -89,7 +89,7 @@ public partial class Item : Area2D
 
 	public void OnPickupRangeEntered(Node2D n) {
 		if (n.GetType().IsSubclassOf(typeof(Character))) {
-    		CallDeferred("this.pickupRange.GetChild<CollisionShape2D>(0).SetDisabled(true)");
+			pickupRange.GetChild<CollisionShape2D>(0).SetDeferred(CollisionShape2D.PropertyName.Disabled, true);
 			((Character)n).PickupItem(this);
 		}
 	}

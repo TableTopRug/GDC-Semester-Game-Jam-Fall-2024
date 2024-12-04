@@ -4,7 +4,8 @@
 
 [resource]
 script = ExtResource("1_ajexy")
-Health = 0.0
+MaxHealth = 0.0
+CurrentHealth = 0.0
 Mana = 0.0
 Attack = 0.0
 Defense = 0.0

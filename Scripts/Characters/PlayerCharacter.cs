@@ -6,9 +6,33 @@ public partial class PlayerCharacter : Character
 {
 	[Export]
 	public new PlayerStats stats;
+	[Export]
+	public Weapon DebugWeapon;
 
 
-	public override void _PhysicsProcess(double delta)
+    public override void _Input(InputEvent @event)
+	{
+		if (@event is InputEventMouseButton mouseButton) {
+			switch (mouseButton.ButtonIndex) 
+			{
+				case MouseButton.Left:
+					DebugWeapon.Attack();
+					break;
+			}
+		}
+
+		base._Input(@event);
+	}
+	
+	public override void _Ready()
+    {
+		this.DebugWeapon.pickupRange.GetChild<CollisionShape2D>(0).Disabled = true;
+		this.Equipment.Add(DebugWeapon);
+
+        base._Ready();
+    }
+
+    public override void _PhysicsProcess(double delta)
 	{
 		Vector2 velocity = Velocity;
 		Vector2 direction = Vector2.Zero;

@@ -11,16 +11,25 @@ public abstract partial class Character : CharacterBody2D
 
   public CharacterStats stats;
   public List<Item> Inventory;
+  public List<Item> Equipment;
 
+  public bool isAttacking = false;
 
+  
   public void PickupItem(Item i) {
-    this.AddChild(i);
-    this.Inventory.Add(i);
+    if (this.FindChild(i.name) == null) 
+    {
+      this.AddChild(i);
+      this.Inventory.Add(i);
+    }
   }
 
   public override void _Ready()
   {
     Gravity = GetGravity();
+
+    Equipment = new List<Item>();
+    Inventory = new List<Item>();
 
     base._Ready();
   }

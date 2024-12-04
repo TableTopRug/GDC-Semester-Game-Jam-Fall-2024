@@ -1,11 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://bnf4ivuu1e30e"]
+[gd_scene load_steps=3 format=3 uid="uid://bnf4ivuu1e30e"]
 
 [ext_resource type="PackedScene" uid="uid://72xdi7u1gan" path="res://Scenes/Items/item.tscn" id="1_hw2bt"]
-[ext_resource type="Script" path="res://Scripts/Items/Weapon.cs" id="2_nfs8n"]
 [ext_resource type="Resource" uid="uid://blwywxnl1ot8x" path="res://Resources/Items/WeaponStats.tres" id="3_j0oae"]
 
-[node name="Weapon" node_paths=PackedStringArray("pickupRange") instance=ExtResource("1_hw2bt")]
-script = ExtResource("2_nfs8n")
+[node name="Weapon" instance=ExtResource("1_hw2bt")]
 stats = ExtResource("3_j0oae")
-stats = ExtResource("3_j0oae")
-pickupRange = NodePath("pickuprange")

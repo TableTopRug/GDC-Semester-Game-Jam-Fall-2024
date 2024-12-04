@@ -39,7 +39,7 @@ public partial class Item : Area2D
 		shape.Shape = circle;
 		pickupRange.AddChild(shape);
 
-		_CreateColisionPolygon2DSibling(Vector2.One);
+		// _CreateColisionPolygon2DSibling(Vector2.One);
 	}
 
 	public void _CreateColisionPolygon2DSibling(Vector2 scale) 
@@ -89,8 +89,8 @@ public partial class Item : Area2D
 
 	public void OnPickupRangeEntered(Node2D n) {
 		if (n.GetType().IsSubclassOf(typeof(Character))) {
+    		CallDeferred("this.pickupRange.GetChild<CollisionShape2D>(0).SetDisabled(true)");
 			((Character)n).PickupItem(this);
-			isEquipped = true;
 		}
 	}
 }

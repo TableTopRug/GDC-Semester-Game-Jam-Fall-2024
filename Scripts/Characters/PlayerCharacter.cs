@@ -29,14 +29,6 @@ public partial class PlayerCharacter : Character
         base._Ready();
     }
 
-	public void DebugSetup()
-	{
-		GD.Print(DebugWeapon);
-
-		DebugWeapon.pickupRange.GetChild<CollisionShape2D>(0).SetDeferred(CollisionShape2D.PropertyName.Disabled, true);
-		this.Equipment.Add(DebugWeapon);
-	}
-
     public override void _PhysicsProcess(double delta)
 	{
 		Vector2 velocity = Velocity;

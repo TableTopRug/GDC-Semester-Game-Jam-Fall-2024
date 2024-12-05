@@ -1,9 +1,9 @@
 using System.Collections.Generic;
 using System.Linq;
-using GDCFall24GameJam;
+using WaltuhsMagicAdventure;
 using Godot;
 
-namespace GDCFall24GameJam {
+namespace WaltuhsMagicAdventure {
     public partial class ItemEffect : Effect<ItemStats, ItemStatMods> {
     }
 }

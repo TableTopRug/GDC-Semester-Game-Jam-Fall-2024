@@ -1,4 +1,4 @@
-using GDCFall24GameJam;
+using WaltuhsMagicAdventure;
 using Godot;
 using System;
 

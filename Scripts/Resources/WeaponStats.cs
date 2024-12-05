@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 
 
-namespace GDCFall24GameJam
+namespace WaltuhsMagicAdventure
 {
 	[GlobalClass]
 	public partial class WeaponStats : ItemStats, IIStats<DamageType> {

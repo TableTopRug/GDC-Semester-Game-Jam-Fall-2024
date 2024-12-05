@@ -1,4 +1,4 @@
-namespace GDCFall24GameJam {
+namespace WaltuhsMagicAdventure {
     
     public enum DamageType {
         BLUNT,

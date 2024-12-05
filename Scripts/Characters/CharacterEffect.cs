@@ -1,5 +1,5 @@
 using System.Collections.Generic;
-using GDCFall24GameJam;
+using WaltuhsMagicAdventure;
 using Godot;
 
 

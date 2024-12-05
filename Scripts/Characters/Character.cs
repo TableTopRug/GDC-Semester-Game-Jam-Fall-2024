@@ -5,6 +5,9 @@ using System.Collections.Generic;
 
 public abstract partial class Character : CharacterBody2D
 {
+  [Signal]
+  public delegate void ItemPickedUpEventHandler(Item i);
+
   public const float Speed = 300.0f;
   public const float JumpVelocity = -400.0f;
   public static Vector2 Gravity;
@@ -16,11 +19,21 @@ public abstract partial class Character : CharacterBody2D
   public bool isAttacking = false;
 
   
+  public void EquipItem(Item i)
+  {
+    i.Visible = true;
+    i.Position = new Vector2I(38, -20);
+  }
+
   public void PickupItem(Item i) {
     if (this.FindChild(i.name) == null) 
     {
-      this.AddChild(i);
+      i.GetParent().CallDeferred(Node.MethodName.RemoveChild, i);
+      this.CallDeferred(Node.MethodName.AddChild, i);
       this.Inventory.Add(i);
+      GD.Print(Inventory);
+      this.CallDeferred("EquipItem", i);
+      EmitSignal(SignalName.ItemPickedUp, i);
     }
   }
 

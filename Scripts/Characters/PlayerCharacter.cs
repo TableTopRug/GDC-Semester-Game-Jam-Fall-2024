@@ -12,11 +12,12 @@ public partial class PlayerCharacter : Character
 
     public override void _Input(InputEvent @event)
 	{
-		if (@event is InputEventMouseButton mouseButton) {
+		if (@event is InputEventMouseButton mouseButton && !mouseButton.IsReleased() && !mouseButton.IsEcho()) {
 			switch (mouseButton.ButtonIndex) 
 			{
 				case MouseButton.Left:
 					DebugWeapon.Attack();
+					GD.Print("Attack");
 					break;
 			}
 		}
@@ -26,8 +27,25 @@ public partial class PlayerCharacter : Character
 	
 	public override void _Ready()
     {
+		// DebugSetup();
+		this.ItemPickedUp += EquipWeapon;
+
+
         base._Ready();
     }
+
+	public void EquipWeapon(Item i) 
+	{
+		Weapon w = (Weapon)i;
+		this.DebugWeapon = w;
+	}
+
+	public void DebugSetup()
+	{
+		// DebugWeapon = (Item)this.GetChild<Item>(3);
+		// GD.Print(this.GetChildren());
+		// DebugWeapon.pickupRange.GetChild<CollisionShape2D>(0).SetDeferred(CollisionShape2D.PropertyName.Disabled, true);
+	}
 
     public override void _PhysicsProcess(double delta)
 	{

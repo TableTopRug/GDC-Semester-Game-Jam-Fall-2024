@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=4 uid="uid://1ltq5gh11q4x"]
+[gd_scene load_steps=7 format=4 uid="uid://1ltq5gh11q4x"]
 
 [ext_resource type="PackedScene" uid="uid://cwgp76bhfo3hi" path="res://Scenes/Ground/ground_tiles.tscn" id="1_25oqe"]
 [ext_resource type="Texture2D" uid="uid://c8tqj7yk7cmfe" path="res://Assets/LevelParts/Cobblestone.png" id="2_1jyjv"]
 [ext_resource type="PackedScene" uid="uid://ct5gteqo34b7m" path="res://Scenes/Characters/player.tscn" id="3_mhl8x"]
+[ext_resource type="PackedScene" uid="uid://bbeux1q0dwvy0" path="res://Scenes/Items/sword.tscn" id="4_x5pr0"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_htd66"]
 texture = ExtResource("2_1jyjv")
@@ -220,3 +221,6 @@ tile_set = SubResource("TileSet_xot28")
 [node name="Player" parent="." instance=ExtResource("3_mhl8x")]
 position = Vector2(343, 226)
 scale = Vector2(1, 1)
+
+[node name="Sword" parent="." instance=ExtResource("4_x5pr0")]
+position = Vector2(528, 241)

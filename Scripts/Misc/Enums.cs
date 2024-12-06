@@ -1,4 +1,4 @@
-namespace WaltuhsMagicAdventure {
+namespace WaltuhsMagicalAdventure {
     
     public enum DamageType {
         BLUNT,

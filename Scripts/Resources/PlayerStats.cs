@@ -5,7 +5,7 @@ using Godot;
 using Godot.Collections;
 
 
-namespace WaltuhsMagicAdventure
+namespace WaltuhsMagicalAdventure
 {
 	[GlobalClass]
 	public partial class PlayerStats : CharacterStats, IIStats<PlayerStatMods>

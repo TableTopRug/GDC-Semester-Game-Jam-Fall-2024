@@ -1,9 +1,9 @@
 using System.Collections.Generic;
 using System.Linq;
-using WaltuhsMagicAdventure;
+using WaltuhsMagicalAdventure;
 using Godot;
 
-namespace WaltuhsMagicAdventure {
+namespace WaltuhsMagicalAdventure {
     public partial class ItemEffect : Effect<ItemStats, ItemStatMods> {
     }
 }

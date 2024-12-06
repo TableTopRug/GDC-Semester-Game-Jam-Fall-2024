@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using Godot;
 
 
-namespace WaltuhsMagicAdventure
+namespace WaltuhsMagicalAdventure
 {
 	[GlobalClass]
 	public partial class CharacterStats : Resource, IStats<CharStatMods>

@@ -1,4 +1,4 @@
-using WaltuhsMagicAdventure;
+using WaltuhsMagicalAdventure;
 using Godot;
 using System;
 
